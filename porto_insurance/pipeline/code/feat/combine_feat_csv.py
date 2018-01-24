@@ -1,0 +1,171 @@
+"""
+  __file__
+    combine_feat.py
+  __description__
+    this file ensemble the desied feature
+  __author__
+    qufu
+"""
+
+import os
+import sys
+import pickle
+import numpy as np
+import pandas as pd
+from scipy.sparse import hstack, vstack
+from sklearn.base import BaseEstimator
+from sklearn.datasets import dump_svmlight_file
+sys.path.append("../")
+from param_config import config
+
+#### adopted from @Ben Hamner's Python Benchmark code
+## https://www.kaggle.com/benhamner/crowdflower-search-relevance/python-benchmark
+def identity(x):
+  return x
+
+class SimpleTransform(BaseEstimator):
+  def __init__(self, transformer=identity):
+    self.transformer = transformer
+
+  def fit(self, X, y=None):
+    return self
+
+  def fit_transform(self, X, y=None):
+    return self.transform(X)
+
+  def transform(self, X, y=None):
+    return self.transformer(X)
+
+
+#### function to combine features
+def combine_feat(feat_names, feat_path_name, dfTrain, dfTest, skf):
+
+  print("==================================================")
+  print("Combine features...")
+
+  ######################
+  ## Cross-validation ##
+  ######################
+  print("For cross-validation...")
+  ## for each run and fold
+  for run in range(1,config.n_runs+1):
+  ## use 33% for training and 67 % for validation
+  ## so we switch trainInd and validInd
+    for fold, (validInd, trainInd) in enumerate(skf[run-1]):
+      fold = fold+1
+      print("Run: %d, Fold: %d" % (run, fold))
+      path = "%s/Run%d/Fold%d" % (config.feat_folder, run, fold)
+      save_path = "%s/%s/Run%d/Fold%d" % (config.feat_folder, feat_path_name, run, fold)
+      if not os.path.exists(save_path):
+        os.makedirs(save_path)
+      
+      col = [c for c in dfTrain.columns if c not in ['id','target']]
+      col = [c for c in col if not c.startswith('ps_calc_')]
+      target = ["target"] # to make the y_train to be a dataframe,if use dftrain["target"],we get a np.aray
+      X_train = dfTrain[col].iloc[trainInd]
+      X_valid = dfTrain[col].iloc[validInd]
+      Y_train = dfTrain[target].iloc[trainInd]
+      Y_valid = dfTrain[target].iloc[validInd]
+
+      for i,(feat_name,transformer) in enumerate(feat_names):
+        ## load train feat
+        feat_train_file = "%s/train.%s.feat.pkl" % (path, feat_name)
+        with open(feat_train_file, "rb") as f:
+          x_train = pickle.load(f)
+        if len(x_train.shape) == 1:
+          x_train.shape = (x_train.shape[0], 1)
+
+        ## load valid feat
+        feat_valid_file = "%s/valid.%s.feat.pkl" % (path, feat_name)
+        with open(feat_valid_file, "rb") as f:
+          x_valid = pickle.load(f)
+        if len(x_valid.shape) == 1:
+          x_valid.shape = (x_valid.shape[0], 1)
+
+        ## align feat dim
+        dim_diff = abs(x_train.shape[1] - x_valid.shape[1])
+        if x_valid.shape[1] < x_train.shape[1]:
+          x_valid = hstack([x_valid, np.zeros((x_valid.shape[0], dim_diff))]).tocsr()
+        elif x_valid.shape[1] > x_train.shape[1]:
+          x_train = hstack([x_train, np.zeros((x_train.shape[0], dim_diff))]).tocsr()
+
+        ## apply transformation
+        x_train = transformer.fit_transform(x_train)
+        x_valid = transformer.transform(x_valid)
+
+        ## stack feat
+        X_train[feat_name] = x_train
+        X_valid[feat_name] = x_valid
+
+        print("Combine {:>2}/{:>2} feat: {} ({}D)".format(i+1, len(feat_names), feat_name, x_train.shape[1]))
+      print("Feat dim: {}D".format(X_train.shape[1]))
+
+      ## dump feat
+      #dump_svmlight_file(X_train, Y_train, "%s/train.feat" % (save_path))
+      #dump_svmlight_file(X_valid, Y_valid, "%s/valid.feat" % (save_path))
+      
+      X_train.to_csv('%s/train.feat.csv' % save_path, index=False, float_format='%.5f')
+      X_valid.to_csv('%s/valid.feat.csv' % save_path, index=False, float_format='%.5f')
+      Y_train.to_csv('%s/train.target.csv' % save_path, index=False, float_format='%.5f')
+      Y_valid.to_csv('%s/valid.target.csv' % save_path, index=False, float_format='%.5f')
+  ##########################
+  ## training and testing ##
+  ##########################
+
+  print("For training and testing...")
+  path = "%s/All" % (config.feat_folder)
+  save_path = "%s/%s/All" % (config.feat_folder, feat_path_name)
+  if not os.path.exists(save_path):
+    os.makedirs(save_path)
+
+  col = [c for c in dfTrain.columns if c not in ['id','target']]
+  col = [c for c in col if not c.startswith('ps_calc_')]
+  target = ["target"]
+  X_train = dfTrain[col]
+  X_test = dfTest[col]
+  Y_train = dfTrain[target]
+  Y_test = pd.DataFrame({"target":np.ones((dfTest.shape[0]))})
+
+
+  for i,(feat_name,transformer) in enumerate(feat_names):
+    ## load train feat
+    feat_train_file = "%s/train.%s.feat.pkl" % (path, feat_name)
+    with open(feat_train_file, "rb") as f:
+      x_train = pickle.load(f)
+    if len(x_train.shape) == 1:
+      x_train.shape = (x_train.shape[0], 1)
+
+    ## load test feat
+    feat_test_file = "%s/test.%s.feat.pkl" % (path, feat_name)
+    with open(feat_test_file, "rb") as f:
+      x_test = pickle.load(f)
+    if len(x_test.shape) == 1:
+      x_test.shape = (x_test.shape[0], 1)
+
+    ## align feat dim
+    dim_diff = abs(x_train.shape[1] - x_test.shape[1])
+    if x_test.shape[1] < x_train.shape[1]:
+      x_test = hstack([x_test, np.zeros((x_test.shape[0], dim_diff))]).tocsr()
+    elif x_test.shape[1] > x_train.shape[1]:
+      x_train = hstack([x_train, np.zeros((x_train.shape[0], dim_diff))]).tocsr()
+
+    ## apply transformation
+    x_train = transformer.fit_transform(x_train)
+    x_test = transformer.transform(x_test)
+
+    ## stack feat
+    X_train[feat_name] = x_train
+    X_test[feat_name] = x_test
+
+
+    print("Combine {:>2}/{:>2} feat: {} ({}D)".format(i+1, len(feat_names), feat_name, x_train.shape[1]))
+  print("Feat dim: {}D".format(X_train.shape[1]))
+
+  ## dump feat
+  #dump_svmlight_file(X_train, Y_train, "%s/train.feat" % (save_path))
+  #dump_svmlight_file(X_test, Y_test, "%s/test.feat" % (save_path))
+      
+  X_train.to_csv('%s/train.feat.csv' % save_path, index=False, float_format='%.5f')
+  X_test.to_csv('%s/test.feat.csv' % save_path, index=False, float_format='%.5f')
+  Y_train.to_csv('%s/train.target.csv' % save_path, index=False, float_format='%.5f')
+  Y_test.to_csv('%s/test.target.csv' % save_path, index=False, float_format='%.5f')

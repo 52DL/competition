@@ -1,0 +1,297 @@
+"""
+  __file__
+    get_best_model.py
+  __description__
+    this file get the model's predictions based on the params from hyperopt
+  __author__
+    qufu
+"""
+
+import sys
+import csv
+import os
+import pickle
+import time
+import numpy as np
+import pandas as pd
+import xgboost as xgb
+from scipy.sparse import hstack
+## sklearn
+from sklearn.base import BaseEstimator
+from sklearn.datasets import load_svmlight_file, dump_svmlight_file
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression, LinearRegression
+from sklearn.linear_model import Ridge, Lasso, LassoLars, ElasticNet
+from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
+from sklearn.ensemble import ExtraTreesClassifier, ExtraTreesRegressor
+from sklearn.ensemble import GradientBoostingClassifier, GradientBoostingRegressor
+from sklearn.svm import SVR
+from sklearn.pipeline import Pipeline
+## hyperopt
+from hyperopt import hp
+from hyperopt import fmin, tpe, hp, STATUS_OK, Trials
+## keras
+#from keras.models import Sequential
+#from keras.layers.core import Dense, Dropout, Activation
+#from keras.layers.normalization import BatchNormalization
+#from keras.layers.advanced_activations import PReLU
+#from keras.utils import np_utils, generic_utils
+## cutomized module
+from model_best_config import feat_folders, feat_names, param_spaces, int_feat
+sys.path.append("../")
+from param_config import config
+from ml_metrics import gini_xgb
+from utils_csv import *
+
+
+#bal trial_counter
+global log_handler
+
+output_path = "../../best_results"
+
+### global params
+## you can use bagging to stabilize the predictions
+bootstrap_ratio = 1
+bootstrap_replacement = False
+bagging_size= 1
+
+ebc_hard_threshold = False
+verbose_level = 1
+
+def hyperopt_obj(param, feat_folder, feat_name, cv_data, tt_data):
+  gini_cv = np.zeros((config.n_runs, config.n_folds), dtype=float)
+  for run in range(1,config.n_runs+1):
+    for fold in range(1,config.n_folds+1):
+      rng = np.random.RandomState(2017 + 1000 * run + 10 * fold)
+
+      #### all the path
+      save_path = "%s/Run%d/Fold%d" % (output_path, run, fold)
+      # result path
+      pred_valid_path = "%s/valid.pred.%s.csv" % (save_path, feat_name)
+      if not os.path.exists(save_path):
+        os.makedirs(save_path)
+
+      if config.preload:
+        X_train = cv_data[str(run)+str(fold)]["X1"]
+        X_valid = cv_data[str(run)+str(fold)]["X2"]
+        labels_train = cv_data[str(run)+str(fold)]["Y1"]
+        labels_valid = cv_data[str(run)+str(fold)]["Y2"]
+        numTrain = cv_data[str(run)+str(fold)]["num1"]
+        numValid = cv_data[str(run)+str(fold)]["num2"]
+      else:
+        path = "%s/Run%d/Fold%d" % (feat_folder, run, fold)
+        # feat path
+        feat_train_path = "%s/train.feat.csv" % path
+        feat_valid_path = "%s/valid.feat.csv" % path
+
+        # target path
+        target_train_path = "%s/train.target.csv" % path
+        target_valid_path = "%s/valid.target.csv" % path
+
+        ## load feat
+        X_train = pd.read_csv(feat_train_path).values
+        X_valid = pd.read_csv(feat_valid_path).values
+        labels_train = pd.read_csv(target_train_path).values
+        labels_valid = pd.read_csv(target_valid_path).values
+
+        ## load valid info
+        numTrain = X_train.shape[0]
+        numValid = X_valid.shape[0]
+
+
+      ##############
+      ## Training ##
+      ##############
+      ## you can use bagging to stabilize the predictions
+      preds_bagging = np.zeros((numValid, bagging_size), dtype=float)
+      for n in range(bagging_size):
+        if bootstrap_replacement:
+          sampleSize = int(numTrain*bootstrap_ratio)
+          index_base = rng.randint(numTrain, size=sampleSize)
+          index_meta = [i for i in range(numTrain) if i not in index_base]
+        else:
+          randnum = rng.uniform(size=numTrain)
+          index_base = [i for i in range(numTrain) if randnum[i] < bootstrap_ratio]
+          index_meta = [i for i in range(numTrain) if randnum[i] >= bootstrap_ratio]
+
+        if "booster" in param:
+          dvalid_base = xgb.DMatrix(X_valid, label=labels_valid)
+          dtrain_base = xgb.DMatrix(X_train[index_base], label=labels_train[index_base])
+
+          watchlist = []
+          if verbose_level >= 2:
+            watchlist  = [(dtrain_base, 'train'), (dvalid_base, 'valid')]
+
+        ## various models
+        if param["task"] in ["classification"]:
+          ## regression & pairwise ranking with xgboost
+          bst = xgb.train(param, dtrain_base, param['num_round'], watchlist, feval=gini_xgb)
+          pred = bst.predict(dvalid_base)
+
+        ## weighted averageing over different models
+        pred_valid = pred
+        ## this bagging iteration
+        preds_bagging[:,n] = pred_valid
+      pred_raw = np.mean(preds_bagging, axis=1)
+      pred_rank = pred_raw.argsort().argsort()
+      pred_valid = 1.0*pred_rank/np.max(pred_rank)
+      gini_valid = gini_xgb(pred_valid, dvalid_base)
+      print("                    {:>3}       {:>3}      {:>3}    {:>8}  {} x {}".format(
+                                run, fold, n+1, np.round(gini_valid[0][1],6), X_train.shape[0], X_train.shape[1]))
+      gini_cv[run-1,fold-1] = gini_valid[0][1]
+      ## save this prediction
+      dfPred = pd.DataFrame({"target": labels_valid, "prediction": pred_valid})
+      dfPred.to_csv(pred_valid_path, index=False, header=True,
+                   columns=["target", "prediction"])
+
+  gini_cv_mean = np.mean(gini_cv)
+  gini_cv_std = np.std(gini_cv)
+  if verbose_level >= 1:
+    print("              Mean: %.6f" % gini_cv_mean)
+    print("              Std: %.6f" % gini_cv_std)
+
+  ####################
+  #### Retraining ####
+  ####################
+  #### all the path
+  save_path = "%s/All" % output_path
+  subm_path = "%s/Subm" % output_path
+  if not os.path.exists(save_path):
+    os.makedirs(save_path)
+  if not os.path.exists(subm_path):
+    os.makedirs(subm_path)
+  # result path
+  pred_test_path = "%s/test.pred.%s.csv" % (save_path, feat_name)
+  pred_train_path = "%s/train.pred.%s.csv" % (save_path, feat_name)
+  # submission path (relevance as in [1,2,3,4])
+  subm_path = "%s/test.pred.%s_[Mean%.6f]_[Std%.6f].csv" % (subm_path, feat_name, gini_cv_mean, gini_cv_std)
+
+  if config.preload:
+    X_train = tt_data["X1"]
+    X_test = tt_data["X2"]
+    labels_train = tt_data["Y1"]
+    labels_test = tt_data["Y2"]
+    numTrain = tt_data["num1"]
+    numTest = tt_data["num2"]
+    id_test = tt_data["id_test"]
+  else:
+    path = "%s/All" % (feat_folder)
+    # feat path
+    feat_train_path = "%s/train.feat.csv" % path
+    feat_test_path = "%s/test.feat.csvt" % path
+    # target path
+    target_train_path = "%s/train.target.csvt" % path
+    target_test_path = "%s/test.target.csv" % path
+    id_test_path = "%s/test.id.info" % path
+
+    #### load data
+    ## load feat
+    X_train = pd.read_csv(feat_train_path).values
+    X_test = pd.read_csv(feat_test_path).values
+    labels_train = pd.read_csv(target_train_path).values
+    labels_test = pd.read_csv(target_test_path).values
+
+    ## load valid info
+    numTrain = X_train.shape[0]
+    numTest = X_test.shape[0]
+
+    ## load test info
+    info_test = pd.read_csv(id_test_path)
+    id_test = info_test["id"]
+
+  ## bagging
+  ## bagging
+  preds_bagging1 = np.zeros((numTrain, bagging_size), dtype=float)
+  preds_bagging2 = np.zeros((numTest, bagging_size), dtype=float)
+  for n in range(bagging_size):
+    if bootstrap_replacement:
+      sampleSize = int(numTrain*bootstrap_ratio)
+      #index_meta = rng.randint(numTrain, size=sampleSize)
+      #index_base = [i for i in range(numTrain) if i not in index_meta]
+      index_base = rng.randint(numTrain, size=sampleSize)
+      index_meta = [i for i in range(numTrain) if i not in index_base]
+    else:
+      randnum = rng.uniform(size=numTrain)
+      index_base = [i for i in range(numTrain) if randnum[i] < bootstrap_ratio]
+      index_meta = [i for i in range(numTrain) if randnum[i] >= bootstrap_ratio]
+
+    if "booster" in param:
+      dtest = xgb.DMatrix(X_test, label=labels_test)
+      dtrain = xgb.DMatrix(X_train[index_base], label=labels_train[index_base])
+
+      watchlist = []
+      if verbose_level >= 2:
+        watchlist  = [(dtrain, 'train')]
+
+    ## train
+    if param["task"] in ["classification"]:
+      bst = xgb.train(param, dtrain, param['num_round'], watchlist, feval=gini_xgb)
+      pred1 = bst.predict(dtrain)
+      pred2 = bst.predict(dtest)
+
+    pred_train = pred1
+    preds_bagging1[:,n] = pred_train
+    pred_test = pred2
+    preds_bagging2[:,n] = pred_test
+  pred_raw1 = np.mean(preds_bagging1, axis=1)
+  pred_rank1 = pred_raw1.argsort().argsort()
+  pred_train = 1.0*pred_rank1/np.max(pred_rank1)
+  pred_raw2 = np.mean(preds_bagging2, axis=1)
+  pred_rank2 = pred_raw2.argsort().argsort()
+  pred_test = 1.0*pred_rank2/np.max(pred_rank2)
+  ## write
+  output = pd.DataFrame({"id": id_test, "target": pred_test})
+  output.to_csv(pred_test_path, index=False)
+
+  ## write
+  output = pd.DataFrame({"target": pred_train})
+  output.to_csv(pred_train_path, index=False)
+
+  ## write
+  output = pd.DataFrame({"id": id_test, "target": pred_test})
+  output.to_csv(subm_path, index=False)
+
+  return gini_cv_mean, gini_cv_std
+
+if __name__ == "__main__":
+  log_path = "%s/Log" % output_path
+  if not os.path.exists(log_path):
+    os.makedirs(log_path)
+
+  for feat_name, feat_folder in zip(feat_names, feat_folders):
+    param = param_spaces[feat_name]
+    log_file = "%s/%s_hyperopt.log" % (log_path, feat_name)
+    log_handler = open( log_file, 'w' )
+    writer = csv.writer( log_handler )
+    headers = [ 'gini_mean', 'gini_std' ]
+    for k,v in sorted(param.items()):
+      headers.append(k)
+    writer.writerow( headers )
+    log_handler.flush()
+
+    print("************************************************************")
+    print("handle with: %s" % feat_name)
+    #global trial_counter
+    if config.preload:
+      start = time.clock()
+      cv_data,tt_data = get_feat_data(feat_folder)
+      print("loding data time used:", (time.clock() - start))
+    else:
+      cv_data = None
+      tt_data = None
+    second = time.clock()
+    gini_cv_mean, gini_cv_std = hyperopt_obj(param, feat_folder, feat_name,  cv_data, tt_data)
+    print("train model and get preds used time:", (time.clock()-start))
+    print("the gini_cv_mean is :", gini_cv_mean)
+    print("the gini_cv_std is :", gini_cv_std)
+
+    ## log
+    var_to_log = [
+          "%.6f " % gini_cv_mean,
+          "%.6f " % gini_cv_std
+    ]
+
+    for k,v in sorted(param.items()):
+      var_to_log.append("%s " % v)
+    writer.writerow(var_to_log)
+    log_handler.flush()
