@@ -1,0 +1,595 @@
+5f-3r-40p-lrreduce
+
+Fold  0
+
+   Run 1/3
+2017-12-05 12:16:48.164442: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+      Test loss: 0.193770357382
+      Test accuracy: 0.903426791277
+
+   Run 2/3
+      Test loss: 0.225336340543
+      Test accuracy: 0.890965732087
+
+   Run 3/3
+      Test loss: 0.208120689214
+      Test accuracy: 0.909657320872
+     fold cv =  0.197638166542
+
+Fold  1
+
+   Run 1/3
+      Test loss: 0.292094757438
+      Test accuracy: 0.853582554517
+
+   Run 2/3
+      Test loss: 0.27674993181
+      Test accuracy: 0.859813084112
+
+   Run 3/3
+      Test loss: 0.291295679373
+      Test accuracy: 0.8753894081
+     fold cv =  0.27116343295
+
+Fold  2
+
+   Run 1/3
+      Test loss: 0.29034498761
+      Test accuracy: 0.881619937695
+
+   Run 2/3
+      Test loss: 0.269451453028
+      Test accuracy: 0.856697819315
+
+   Run 3/3
+      Test loss: 0.265721186206
+      Test accuracy: 0.897196261682
+     fold cv =  0.260813956178
+
+Fold  3
+
+   Run 1/3
+      Test loss: 0.231836526286
+      Test accuracy: 0.909657320872
+
+   Run 2/3
+      Test loss: 0.245449654503
+      Test accuracy: 0.903426791277
+
+   Run 3/3
+      Test loss: 0.22929712935
+      Test accuracy: 0.915887850467
+     fold cv =  0.224490861301
+
+Fold  4
+
+   Run 1/3
+      Test loss: 0.262705239654
+      Test accuracy: 0.896875
+
+   Run 2/3
+      Test loss: 0.312359105051
+      Test accuracy: 0.846875
+
+   Run 3/3
+      Test loss: 0.26815007627
+      Test accuracy: 0.8625
+     fold cv =  0.256380245022
+
+   full cv =  0.242088427839
+
+
+
+333333333333333333333333333333333333
+333333333333333333333333333333333333
+333333333333333333333333333333333333
+333333333333333333333333333333333333
+
+
+Fold  0
+
+   Run 1/3
+2017-12-05 21:51:05.095710: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+      Test loss: 0.201541982707
+      Test accuracy: 0.906542056075
+
+   Run 2/3
+      Test loss: 0.1984237737
+      Test accuracy: 0.909657320872
+
+   Run 3/3
+      Test loss: 0.200191122721
+      Test accuracy: 0.90031152648
+     fold cv =  0.195101856225
+
+Fold  1
+
+   Run 1/3
+      Test loss: 0.275191962765
+      Test accuracy: 0.869158878505
+
+   Run 2/3
+      Test loss: 0.261493294155
+      Test accuracy: 0.881619937695
+
+   Run 3/3
+      Test loss: 0.272085436362
+      Test accuracy: 0.88785046729
+     fold cv =  0.257833187189
+
+Fold  2
+
+   Run 1/3
+      Test loss: 0.257462946054
+      Test accuracy: 0.906542056075
+
+   Run 2/3
+      Test loss: 0.259441594654
+      Test accuracy: 0.878504672897
+
+   Run 3/3
+      Test loss: 0.309562018542
+      Test accuracy: 0.866043613707
+     fold cv =  0.252218506285
+
+Fold  3
+
+   Run 1/3
+      Test loss: 0.235451341789
+      Test accuracy: 0.890965732087
+
+   Run 2/3
+      Test loss: 0.22191809401
+      Test accuracy: 0.91277258567
+
+   Run 3/3
+      Test loss: 0.234590617296
+      Test accuracy: 0.92523364486
+     fold cv =  0.221462923863
+
+Fold  4
+
+   Run 1/3
+      Test loss: 0.268475061655
+      Test accuracy: 0.865625
+
+   Run 2/3
+      Test loss: 0.300365751982
+      Test accuracy: 0.865625
+
+   Run 3/3
+      Test loss: 0.262962733954
+      Test accuracy: 0.884375
+     fold cv =  0.264027062044
+
+   full cv =  0.238112561015
+
+
+5-3-100-24
+
+Fold  0
+
+   Run 1/3
+2017-12-07 08:35:23.445343: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+      Test loss: 0.191031450423
+      Test accuracy: 0.903426791277
+
+   Run 2/3
+      Test loss: 0.213820466186
+      Test accuracy: 0.890965732087
+
+   Run 3/3
+      Test loss: 0.212544065213
+      Test accuracy: 0.903426791277
+     fold cv =  0.198303599439
+
+Fold  1
+
+   Run 1/3
+      Test loss: 0.261247552792
+      Test accuracy: 0.884735202492
+
+   Run 2/3
+      Test loss: 0.246530139093
+      Test accuracy: 0.897196261682
+
+   Run 3/3
+      Test loss: 0.244616016931
+      Test accuracy: 0.903426791277
+     fold cv =  0.237595712592
+
+Fold  2
+
+   Run 1/3
+      Test loss: 0.252252531943
+      Test accuracy: 0.894080996885
+
+   Run 2/3
+      Test loss: 0.255668454545
+      Test accuracy: 0.894080996885
+
+   Run 3/3
+      Test loss: 0.248999893851
+      Test accuracy: 0.884735202492
+     fold cv =  0.231363284535
+
+Fold  3
+
+   Run 1/3
+      Test loss: 0.222692780313
+      Test accuracy: 0.934579439252
+
+   Run 2/3
+      Test loss: 0.216779317811
+      Test accuracy: 0.931464174455
+
+   Run 3/3
+      Test loss: 0.210741461809
+      Test accuracy: 0.919003115265
+     fold cv =  0.204565497317
+
+Fold  4
+
+   Run 1/3
+      Test loss: 0.25831592679
+      Test accuracy: 0.871875
+
+   Run 2/3
+      Test loss: 0.260665796697
+      Test accuracy: 0.875
+
+   Run 3/3
+      Test loss: 0.236382056773
+      Test accuracy: 0.896875
+     fold cv =  0.236945767321
+
+   full cv =  0.221745301546
+
+
+hengshao trans feature TLvgg16
+Fold  0
+
+   Run 1/3
+2017-12-11 13:47:26.259235: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+2017-12-11 13:47:27.078636: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:892] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-12-11 13:47:27.079404: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1030] Found device 0 with properties:
+name: Tesla K80 major: 3 minor: 7 memoryClockRate(GHz): 0.8235
+pciBusID: 0000:00:04.0
+totalMemory: 11.17GiB freeMemory: 11.09GiB
+2017-12-11 13:47:27.079450: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+get_best_trans_TLvgg16.py:101: UserWarning: Update your `Model` call to the Keras 2 API: `Model(inputs=[<tf.Tenso..., outputs=Tensor("de...)`
+  model = Model(input=[base_model.input, input_2], output=predictions)
+      Test loss: 0.196228053897
+      Test accuracy: 0.909657320872
+
+   Run 2/3
+      Test loss: 0.176693925953
+      Test accuracy: 0.922118380062
+
+   Run 3/3
+      Test loss: 0.210271918792
+      Test accuracy: 0.91277258567
+     fold cv =  0.184307424435
+
+Fold  1
+
+   Run 1/3
+      Test loss: 0.244216535229
+      Test accuracy: 0.906542056075
+
+   Run 2/3
+      Test loss: 0.246607678562
+      Test accuracy: 0.91277258567
+
+   Run 3/3
+      Test loss: 0.238839065499
+      Test accuracy: 0.90031152648
+     fold cv =  0.233747635859
+
+Fold  2
+
+   Run 1/3
+      Test loss: 0.171483497196
+      Test accuracy: 0.922118380062
+
+   Run 2/3
+      Test loss: 0.189749654116
+      Test accuracy: 0.92523364486
+
+   Run 3/3
+      Test loss: 0.193921842493
+      Test accuracy: 0.922118380062
+     fold cv =  0.173938061788
+
+Fold  3
+
+   Run 1/3
+      Test loss: 0.143127376695
+      Test accuracy: 0.956386292835
+
+   Run 2/3
+      Test loss: 0.16220660958
+      Test accuracy: 0.943925233645
+
+   Run 3/3
+      Test loss: 0.181757769852
+      Test accuracy: 0.91277258567
+     fold cv =  0.152605064146
+
+Fold  4
+
+   Run 1/3
+      Test loss: 0.179784722999
+      Test accuracy: 0.91875
+
+   Run 2/3
+      Test loss: 0.180963965505
+      Test accuracy: 0.909375
+
+   Run 3/3
+      Test loss: 0.186830671877
+      Test accuracy: 0.915625
+     fold cv =  0.173015774743
+
+   full cv =  0.183529342704
+
+
+
+orig+TLvgg16+1024*2+patience20+Adam
+Fold  0
+
+   Run 1/5
+2017-12-12 12:19:00.743773: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+2017-12-12 12:19:01.731198: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:892] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-12-12 12:19:01.732001: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1030] Found device 0 with properties:
+name: Tesla K80 major: 3 minor: 7 memoryClockRate(GHz): 0.8235
+pciBusID: 0000:00:04.0
+totalMemory: 11.17GiB freeMemory: 11.09GiB
+2017-12-12 12:19:01.732034: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+get_best_origin_TLvgg16.py:94: UserWarning: Update your `Model` call to the Keras 2 API: `Model(inputs=[<tf.Tenso..., outputs=Tensor("de...)`
+  model = Model(input=[base_model.input, input_2], output=predictions)
+      Test loss: 0.206098776369
+      Test accuracy: 0.903426791277
+
+   Run 2/5
+      Test loss: 0.208041967633
+      Test accuracy: 0.915887850467
+
+   Run 3/5
+      Test loss: 0.198522741503
+      Test accuracy: 0.90031152648
+
+   Run 4/5
+      Test loss: 0.199811653185
+      Test accuracy: 0.91277258567
+
+   Run 5/5
+      Test loss: 0.207646410042
+      Test accuracy: 0.903426791277
+     fold cv =  0.190899248978
+
+Fold  1
+
+   Run 1/5
+      Test loss: 0.226066773243
+      Test accuracy: 0.897196261682
+
+   Run 2/5
+      Test loss: 0.209373918864
+      Test accuracy: 0.91277258567
+
+   Run 3/5
+      Test loss: 0.221102809232
+      Test accuracy: 0.909657320872
+
+   Run 4/5
+      Test loss: 0.235982910628
+      Test accuracy: 0.915887850467
+
+   Run 5/5
+      Test loss: 0.218761998348
+      Test accuracy: 0.915887850467
+     fold cv =  0.208583551516
+
+Fold  2
+
+   Run 1/5
+      Test loss: 0.204814414833
+      Test accuracy: 0.915887850467
+
+   Run 2/5
+      Test loss: 0.182383546994
+      Test accuracy: 0.922118380062
+
+   Run 3/5
+      Test loss: 0.193774596599
+      Test accuracy: 0.915887850467
+
+   Run 4/5
+      Test loss: 0.167895983777
+      Test accuracy: 0.919003115265
+
+   Run 5/5
+      Test loss: 0.187513143254
+      Test accuracy: 0.92523364486
+     fold cv =  0.169063121988
+
+Fold  3
+
+   Run 1/5
+      Test loss: 0.149653002295
+      Test accuracy: 0.953271028037
+
+   Run 2/5
+      Test loss: 0.148323691894
+      Test accuracy: 0.95015576324
+
+   Run 3/5
+      Test loss: 0.157936021453
+      Test accuracy: 0.959501557632
+
+
+
+   Run 4/5
+      Test loss: 0.145552999505
+      Test accuracy: 0.934579439252
+
+   Run 5/5
+      Test loss: 0.156878237923
+      Test accuracy: 0.934579439252
+     fold cv =  0.137792850126
+
+Fold  4
+
+   Run 1/5
+      Test loss: 0.182393678278
+      Test accuracy: 0.921875
+
+   Run 2/5
+      Test loss: 0.182964704931
+      Test accuracy: 0.91875
+
+   Run 3/5
+      Test loss: 0.18097319901
+      Test accuracy: 0.925
+
+   Run 4/5
+      Test loss: 0.16640281342
+      Test accuracy: 0.93125
+
+   Run 5/5
+      Test loss: 0.179761155695
+      Test accuracy: 0.915625
+     fold cv =  0.166579008654
+   full cv =  0.174588546619
+
+###################################3
+###################################3
+###################################3
+shengshao + TLvgg16+1024*2+patience20+Adam0.0001
+
+Fold  0
+
+   Run 1/5
+2017-12-12 14:45:09.414465: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+2017-12-12 14:45:10.205729: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:892] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-12-12 14:45:10.206511: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1030] Found device 0 with properties:
+name: Tesla K80 major: 3 minor: 7 memoryClockRate(GHz): 0.8235
+pciBusID: 0000:00:04.0
+totalMemory: 11.17GiB freeMemory: 11.09GiB
+2017-12-12 14:45:10.206550: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+get_best_trans_TLvgg16.py:101: UserWarning: Update your `Model` call to the Keras 2 API: `Model(inputs=[<tf.Tenso..., outputs=Tensor("de...)`
+  model = Model(input=[base_model.input, input_2], output=predictions)
+      Test loss: 0.189724892842
+      Test accuracy: 0.90031152648
+
+   Run 2/5
+      Test loss: 0.183593616679
+      Test accuracy: 0.919003115265
+
+   Run 3/5
+      Test loss: 0.188691479395
+      Test accuracy: 0.919003115265
+
+   Run 4/5
+      Test loss: 0.186157630449
+      Test accuracy: 0.922118380062
+
+   Run 5/5
+      Test loss: 0.185532642766
+      Test accuracy: 0.92523364486
+     fold cv =  0.168242409221
+
+Fold  1
+
+   Run 1/5
+      Test loss: 0.221939939112
+      Test accuracy: 0.906542056075
+
+   Run 2/5
+      Test loss: 0.221665140952
+      Test accuracy: 0.91277258567
+
+   Run 3/5
+      Test loss: 0.216078563573
+      Test accuracy: 0.903426791277
+
+   Run 4/5
+      Test loss: 0.21211059016
+      Test accuracy: 0.906542056075
+
+   Run 5/5
+      Test loss: 0.232182073932
+      Test accuracy: 0.90031152648
+     fold cv =  0.209800298532
+
+Fold  2
+
+   Run 1/5
+      Test loss: 0.16382974674
+      Test accuracy: 0.943925233645
+
+   Run 2/5
+      Test loss: 0.187707657731
+      Test accuracy: 0.922118380062
+
+   Run 3/5
+      Test loss: 0.177361598987
+      Test accuracy: 0.922118380062
+
+   Run 4/5
+      Test loss: 0.163941882295
+      Test accuracy: 0.922118380062
+
+   Run 5/5
+      Test loss: 0.188959618943
+      Test accuracy: 0.92523364486
+     fold cv =  0.164779398627
+
+Fold  3
+
+   Run 1/5
+      Test loss: 0.131651029409
+      Test accuracy: 0.956386292835
+
+   Run 2/5
+      Test loss: 0.156325163685
+      Test accuracy: 0.934579439252
+
+   Run 3/5
+      Test loss: 0.154214250986
+      Test accuracy: 0.947040498442
+
+   Run 4/5
+      Test loss: 0.149953813521
+      Test accuracy: 0.95015576324
+
+   Run 5/5
+      Test loss: 0.154017747748
+      Test accuracy: 0.934579439252
+     fold cv =  0.138627942771
+
+Fold  4
+
+   Run 1/5
+      Test loss: 0.193558033556
+      Test accuracy: 0.89375
+
+   Run 2/5
+      Test loss: 0.192004172504
+      Test accuracy: 0.91875
+
+   Run 3/5
+      Test loss: 0.20955517292
+      Test accuracy: 0.896875
+
+   Run 4/5
+      Test loss: 0.188921473548
+      Test accuracy: 0.915625
+
+   Run 5/5
+      Test loss: 0.193456824869
+      Test accuracy: 0.90625
+     fold cv =  0.183348775624
+
+   full cv =  0.172953288016

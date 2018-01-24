@@ -1,0 +1,10 @@
+[
+    {
+        "class": "image",
+        "filename": "image1.jpg",
+    }, 
+    {
+        "class": "image", 
+        "filename": "image2.jpg",
+    }
+]

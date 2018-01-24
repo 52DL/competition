@@ -1,0 +1,6 @@
+doc/_build/*
+*.pyc
+.*.swp
+*.py~
+build/*
+.cache

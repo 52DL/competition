@@ -1,0 +1,268 @@
+Fold  0
+   Run 1/5
+Downloading data from https://github.com/fchollet/deep-learning-models/releases/download/v0.2/resnet50_weights_tf_dim_ordering_tf_kernels_notop.h5
+94658560/94653016 [==============================] - 2s 0us/step
+2017-12-18 13:07:32.577000: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+2017-12-18 13:07:33.298103: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:892] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-12-18 13:07:33.298453: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1030] Found device 0 with properties:
+name: Tesla K80 major: 3 minor: 7 memoryClockRate(GHz): 0.8235
+pciBusID: 0000:00:04.0
+totalMemory: 11.17GiB freeMemory: 11.09GiB
+2017-12-18 13:07:33.298484: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+get_best_origin_TLres50.py:95: UserWarning: Update your `Model` call to the Keras 2 API: `Model(inputs=[<tf.Tenso..., outputs=Tensor("de...)`
+  model = Model(input=[base_model.input, input_2], output=predictions)
+      Test loss: 0.201367728807
+      Test accuracy: 0.919003115265
+   Run 2/5
+2017-12-18 13:15:55.273053: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.206007345629
+      Test accuracy: 0.90031152648
+   Run 3/5
+2017-12-18 13:23:34.031090: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.205661888806
+      Test accuracy: 0.909657320872
+   Run 4/5
+2017-12-18 13:34:03.877301: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.220064360126
+      Test accuracy: 0.906542056075
+   Run 5/5
+2017-12-18 13:43:05.048415: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.172721041512
+      Test accuracy: 0.915887850467
+     fold cv =  0.172898857619
+
+Fold  1
+   Run 1/5
+2017-12-18 13:51:26.569427: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.245650677736
+      Test accuracy: 0.881619937695
+   Run 2/5
+2017-12-18 13:59:01.220785: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.272645894399
+      Test accuracy: 0.894080996885
+   Run 3/5
+2017-12-18 14:09:55.598223: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.279966451666
+      Test accuracy: 0.881619937695
+   Run 4/5
+2017-12-18 14:18:30.123090: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.313889544268
+      Test accuracy: 0.86292834891
+   Run 5/5
+2017-12-18 14:27:19.140282: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.274723134065
+      Test accuracy: 0.881619937695
+     fold cv =  0.229576349353
+
+Fold  2
+   Run 1/5
+2017-12-18 14:34:51.246828: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.288095523635
+      Test accuracy: 0.859813084112
+   Run 2/5
+2017-12-18 14:42:21.699073: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.255338733441
+      Test accuracy: 0.894080996885
+   Run 3/5
+2017-12-18 14:52:24.774234: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.259859524783
+      Test accuracy: 0.897196261682
+   Run 4/5
+2017-12-18 15:00:48.871160: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.248181962939
+      Test accuracy: 0.903426791277
+   Run 5/5
+2017-12-18 15:09:49.214833: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.280921248354
+      Test accuracy: 0.894080996885
+     fold cv =  0.219567985426
+
+Fold  3
+   Run 1/5
+2017-12-18 15:22:59.320582: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.218219362223
+      Test accuracy: 0.92523364486
+   Run 2/5
+2017-12-18 15:30:46.328122: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.186862005925
+      Test accuracy: 0.928348909657
+   Run 3/5
+2017-12-18 15:39:01.728268: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.208994253959
+      Test accuracy: 0.928348909657
+   Run 4/5
+2017-12-18 15:47:16.768056: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.189927385279
+      Test accuracy: 0.931464174455
+   Run 5/5
+2017-12-18 15:58:55.260791: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.215898314021
+      Test accuracy: 0.919003115265
+     fold cv =  0.172318587319
+
+Fold  4
+   Run 1/5
+2017-12-18 16:08:45.604297: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.263205362856
+      Test accuracy: 0.878125
+   Run 2/5
+2017-12-18 16:17:34.255785: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.231638684869
+      Test accuracy: 0.909375
+   Run 3/5
+2017-12-18 16:27:07.081788: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.22275146246
+      Test accuracy: 0.909375
+   Run 4/5
+2017-12-18 16:35:57.879853: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.230067791045
+      Test accuracy: 0.896875
+   Run 5/5
+2017-12-18 16:44:10.646304: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.275258377939
+      Test accuracy: 0.890625
+     fold cv =  0.196925474698
+
+   full cv =  0.198258281292
+Traceback (most recent call last):
+  File "get_best_origin_TLres50.py", line 198, in <module>
+    y_test_pred /= (K * RUNS)
+TypeError: unsupported operand type(s) for *: 'module' and 'int'
+data
+test.json
+test.json.7z
+train.json
+train.json.7z
+
+Using TensorFlow backend.
+/home/yikoudreams/anaconda2/envs/ml/lib/python3.6/importlib/_bootstrap.py:219: RuntimeWarning: compiletime version 3.5 of module 'tensorflow.python.framework.fast_tensor_util' does not match runtime version 3.6
+  return f(*args, **kwds)
+
+Fold  0
+   Run 1/5
+2017-12-18 16:54:56.287361: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+2017-12-18 16:54:56.989084: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:892] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2017-12-18 16:54:56.989444: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1030] Found device 0 with properties:
+name: Tesla K80 major: 3 minor: 7 memoryClockRate(GHz): 0.8235
+pciBusID: 0000:00:04.0
+totalMemory: 11.17GiB freeMemory: 11.09GiB
+2017-12-18 16:54:56.989478: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+get_best_trans_TLres50.py:103: UserWarning: Update your `Model` call to the Keras 2 API: `Model(inputs=[<tf.Tenso..., outputs=Tensor("de...)`
+  model = Model(input=[base_model.input, input_2], output=predictions)
+      Test loss: 0.201466843486
+      Test accuracy: 0.903426791277
+   Run 2/5
+2017-12-18 17:04:00.087897: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.206491805184
+      Test accuracy: 0.91277258567
+   Run 3/5
+2017-12-18 17:16:15.777961: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.226806387468
+      Test accuracy: 0.909657320872
+   Run 4/5
+2017-12-18 17:26:03.575909: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.218642234779
+      Test accuracy: 0.903426791277
+   Run 5/5
+2017-12-18 17:35:58.556501: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.206325119344
+      Test accuracy: 0.91277258567
+     fold cv =  0.176116626984
+
+Fold  1
+   Run 1/5
+2017-12-18 17:44:15.883228: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.261095297661
+      Test accuracy: 0.91277258567
+   Run 2/5
+2017-12-18 17:53:36.772356: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.288714623804
+      Test accuracy: 0.881619937695
+   Run 3/5
+2017-12-18 18:01:28.504130: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.292412903659
+      Test accuracy: 0.906542056075
+   Run 4/5
+2017-12-18 18:11:25.210314: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.289752717516
+      Test accuracy: 0.872274143302
+   Run 5/5
+2017-12-18 18:22:23.142147: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.243473902205
+      Test accuracy: 0.903426791277
+     fold cv =  0.22807209829
+
+Fold  2
+   Run 1/5
+2017-12-18 18:36:07.319683: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.205864320663
+      Test accuracy: 0.906542056075
+   Run 2/5
+2017-12-18 18:51:24.909450: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.233304995753
+      Test accuracy: 0.906542056075
+   Run 3/5
+2017-12-18 19:00:41.736037: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.245239288543
+      Test accuracy: 0.88785046729
+   Run 4/5
+2017-12-18 19:08:38.516342: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.246492182749
+      Test accuracy: 0.878504672897
+   Run 5/5
+2017-12-18 19:16:39.427758: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.260187258602
+      Test accuracy: 0.890965732087
+     fold cv =  0.191915367107
+
+Fold  3
+   Run 1/5
+2017-12-18 19:25:53.567654: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.195418092765
+      Test accuracy: 0.922118380062
+   Run 2/5
+2017-12-18 19:36:19.158292: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.201729901112
+      Test accuracy: 0.897196261682
+   Run 3/5
+2017-12-18 19:45:01.298569: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.190565067938
+      Test accuracy: 0.91277258567
+   Run 4/5
+2017-12-18 19:53:41.961656: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.192471064233
+      Test accuracy: 0.92523364486
+   Run 5/5
+2017-12-18 20:01:58.516188: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.175332642813
+      Test accuracy: 0.934579439252
+     fold cv =  0.162877863459
+
+Fold  4
+   Run 1/5
+2017-12-18 20:10:13.863378: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.227951480448
+      Test accuracy: 0.896875
+   Run 2/5
+2017-12-18 20:20:06.268080: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.230565717071
+      Test accuracy: 0.9125
+   Run 3/5
+2017-12-18 20:27:50.915649: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.191951394081
+      Test accuracy: 0.934375
+   Run 4/5
+2017-12-18 20:36:01.900901: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.218412599713
+      Test accuracy: 0.9
+   Run 5/5
+2017-12-18 20:44:25.132454: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)
+      Test loss: 0.229636244476
+      Test accuracy: 0.903125
+     fold cv =  0.185891327842
+
+   full cv =  0.188976579011
+Traceback (most recent call last):
+  File "get_best_trans_TLres50.py", line 206, in <module>
+    y_test_pred /= (K * RUNS)
+TypeError: unsupported operand type(s) for *: 'module' and 'int'
